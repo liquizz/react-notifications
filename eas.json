@@ -1,0 +1,12 @@
+{
+    "build": {
+        "development": {
+            "ios": {
+                "image": "latest"
+            },
+            "android": {
+                "buildType": "apk"
+            }
+        }
+    }
+}
