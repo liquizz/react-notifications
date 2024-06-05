@@ -123,6 +123,21 @@ async function registerForPushNotificationsAsync() {
     } catch (e) {
       token = `${e}`;
     }
+
+    await fetch('http://192.168.1.223:5286/api/Notification/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        deviceToken: token,
+        platform: Platform.OS === 'android' ? 'fcm' : 'apns',
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+
   } else {
     alert('Must use physical device for Push Notifications');
   }
